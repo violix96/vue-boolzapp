@@ -49,6 +49,7 @@ body{
     background-color: white;
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 }
 
 .height-xl{
@@ -222,6 +223,7 @@ body{
     height: 50px;
     border-radius: 50%;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 
@@ -298,20 +300,30 @@ input[type="text"] {
   .mx-10{
     margin: 0 10px;
   }
-
+  
   .text-chat-me{
-    width: 65%;
+    width: 30%;
     background-color: #D4F9BB;
     border-radius: 10px;
     padding: 22px;
+    margin-left: auto;
+    text-align: left;
   }
   .text-chat-you{
-   width: 65%;
+   width: 30%;
    background-color: #FFFFFF;
    padding: 22px;
    border-radius: 10px;
-   
+   margin-right: auto;
+    text-align: left;
   }
+
+  .message {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    margin-bottom: 10px;
+}
 
 
   .f-dx-column{

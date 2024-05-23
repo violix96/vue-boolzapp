@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap"
         rel="stylesheet">
-    <title>Document</title>
+    <title>Vue-Boolzapp</title>
 </head>
 
 <body>
@@ -37,28 +36,33 @@
                         <p><a href="">Attiva notifiche desktop</a></p>
                     </div>
                 </div>
-                <div class=" container-cerca bg-silver py-20">
+                <div class="container-cerca bg-silver py-20">
                     <input class="cerca" type="text" placeholder="&#128269; Cerca o inizia una nuova chat">
                 </div>
-                <div class="bg-silver over-flow height-l " >
-                    <div class="bg-gold border-bottom py-10" v-for="(contact, index) in contacts" :key="index">
-                        <a href=""><img class="avatar" :src="contact.avatar" :alt="Utente"></a>
+                <div class="bg-silver over-flow height-l">
+                    <div class="bg-gold border-bottom py-10" v-for="(contact, index) in contacts" :key="index"
+                        @click="selectContact(contact)">
                         <div>
-                            <p class="contatto">{{ contact.name }}</p>
-                            <p class="anteprima-messaggi">Lorem ipsum dolor</p>
+                            <img class="avatar" :src="contact.avatar" :alt="contact.name"
+                                @click.stop="selectContact(contact)">
+                            <div>
+                                <span class="contatto">{{ contact.name }}</span>
+                                <p class="anteprima-messaggi">{{ contact.messages[1].message }}</p>
+                            </div>
                         </div>
-                        <span class="time">{{ contact.messages[0].date}}</span>
+                        <span class="time">{{ contact.messages[0].date }}</span>
                     </div>
+
                 </div>
             </div>
             <div class="col-right bg-silver border">
                 <div class="header bg-silver space-between header-container">
-                    <div class="square-l">
+                    <div class="square-l" v-if="activeContact">
                         <div class="d-flex">
-                            <img class="avatar" src="./img/avatar_1.jpg" alt="">
+                            <img class="avatar" :src="activeContact.avatar" :alt="activeContact.name">
                             <div style="margin-left: 30px;">
-                                <p>Michele</p>
-                                <p class="ultimo-accesso">Ultimo accesso oggi alle 16:26</p>
+                                <p>{{ activeContact.name }}</p>
+                                <p class="ultimo-accesso">{{ activeContactLastSeen() }}</p>
                             </div>
                         </div>
                     </div>
@@ -68,24 +72,13 @@
                         <i class="fa-solid fa-ellipsis-vertical mx-10"></i>
                     </div>
                 </div>
-                <div class="bg-violet over-flow height-xl wallpaper d-flex f-dx-column">
-                    <div class="d-flex f-dx-row f-js-end mx-10 py-10">
-                        <div class="text-chat-me">
-                            <p class="p-chat">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
-                                ipsam, nisi eveniet fuga repellat molestias perspiciatis delectus assumenda laboriosam
-                                perferendis sunt ullam accusantium ipsa aspernatur voluptatem velit? Dolores, quam
-                                rerum?</p>
+                <div class="bg-violet overflow height-xl wallpaper d-flex flex-column py-10"
+                    v-if="activeContact && activeContact.messages">
+                    <div class="message-container">
+                        <div v-for="(message, index) in activeContact.messages" :key="index"
+                            :class="{'message': true, 'text-chat-me': message.fromMe, 'text-chat-you': !message.fromMe}">
+                            {{ message.message }}
                         </div>
-
-                    </div>
-                    <div class="d-flex f-dx-row mx-10 py-10">
-                        <div class="text-chat-you">
-                            <p class="p-chat">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
-                                ipsam, nisi eveniet fuga repellat molestias perspiciatis delectus assumenda laboriosam
-                                perferendis sunt ullam accusantium ipsa aspernatur voluptatem velit? Dolores, quam
-                                rerum?</p>
-                        </div>
-
                     </div>
                 </div>
                 <div class="header bg-silver space-between align-center">
@@ -99,14 +92,13 @@
                         <a href=""><i class="fa-solid fa-microphone"></i></a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-    </div>
+    <!-- link cdn Vue.js  -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-    <script src="./main.js"></script>
+    <!-- js link  -->
+    <script src="main.js"></script>
 </body>
 
 </html>
