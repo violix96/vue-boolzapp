@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,6 +58,7 @@
                 <div class="header bg-silver space-between header-container">
                     <div class="square-l" v-if="activeContact">
                         <div class="d-flex">
+                            <span class="arrow-back"><i class="fa-solid fa-arrow-left"></i></span>
                             <img class="avatar" :src="activeContact.avatar" :alt="activeContact.name">
                             <div style="margin-left: 30px;">
                                 <p>{{ activeContact.name }}</p>
@@ -86,12 +86,13 @@
                         <a href=""><i class="fa-regular fa-face-smile"></i></a>
                     </div>
                     <div class="square-bottom-centre">
-                        <input class="chat-box" type="text" placeholder="Scrivi un messaggio">
+                        <input class="chat-box" type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage">
                     </div>
                     <div class="square-bottom-right">
                         <a href=""><i class="fa-solid fa-microphone"></i></a>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

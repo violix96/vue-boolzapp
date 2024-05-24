@@ -346,36 +346,48 @@ input[type="text"] {
 .fa-face-smile, .fa-microphone, .fa-circle, .fa-message, .fa-ellipsis-vertical {
     filter: grayscale(100%)
 }
+@media (max-width: 568px) {
+    .arrow-back{
+        display: block;
+    }
+}
+@media( min-width: 571px) { 
+    .arrow-back{
+        display: none;
+    }
+}
 
-
-@media screen and (max-width: 576px) {
-    .col-left{
+@media screen and (max-width: 570px) {
+    .col-left {
         display: none;
     }
 
-    .square-bottom-left{
+    .square-bottom-left {
         display: none;
     }
-    .square-bottom-right{
+    .square-bottom-right {
         display: none;
     }
-    .square-bottom-centre{
+    .square-bottom-centre {
         width: 100%;
         margin-left: 8px;
         margin-right: 8px;
     }
 
+    .arrow-back {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .col-left{
+    .col-left {
         width: 80px;
     }
-    .col-right{
+    .col-right {
         width: 100%;
     }
 
-    .square-rt{
+    .square-rt {
         display: none;
     }
     .bg-lightblue {
@@ -386,19 +398,19 @@ input[type="text"] {
         display: none;
     }
 
-    .anteprima-messaggi{
+    .anteprima-messaggi {
         display: none;
     }
-    .height-l{
+    .height-l {
         height: 100vh;
     }
-    .height-xl{
+    .height-xl {
         height: calc(100vh - 50px - 55px);
     }
-    .contatto{
+    .contatto {
         display: none;
     }
-    .anteprima-messaggi{
+    .anteprima-messaggi {
         display: none;
     }
     .container {
@@ -407,6 +419,8 @@ input[type="text"] {
         height: 100%;
     }
 }
-    
+
+
+
 
 

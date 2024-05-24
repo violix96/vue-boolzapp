@@ -2,6 +2,8 @@ const { createApp } = Vue;
 createApp({
     data(){
         return {
+            newMessage: '', 
+            autoResponse: 'Ok', 
             activeContact: null,
             contacts: [
                 {
@@ -220,6 +222,15 @@ createApp({
         activeContactLastSeen() {
             if (this.activeContact) {
                 return this.activeContact.lastSeen;
+            }
+        },
+        sendMessage() {
+            if (this.newMessage.trim() !== '') {
+                this.activeContact.messages.push({ message: this.newMessage, status: 'sent', fromMe: true});
+                setTimeout(() => {
+                    this.activeContact.messages.push({message: this.autoResponse, status: 'received', fromMe: false});
+                }, 1000);
+                this.newMessage = '';
             }
         }
     },
